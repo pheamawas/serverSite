@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="https://www.thymeleaf.org/">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Document</title>
+</head>
+<body class="w-[1440px] mx-auto bg-cyan-950 text-sky-100">
+    <h1>Customer Listing</h1>
+    <form action="/customers/search-customer" method="get">
+        <input type="text" name="param" th:value="${param.param}" class="text-neutral-950">
+        <input type="submit" value="search">
+    </form>
+    <div th:if="${page.content == null or #lists.isEmpty(page.content)}">
+        <p class="text-red-600"><span th:text="${param.param}"/> not found.</p>
+    </div>
+    <div th:if="${page.content != null and !#lists.isEmpty(page.content)}">
+        <table class="mx-auto w-full" >
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Address</th>
+                <th>Phone</th>
+                <th>Country</th>
+                <th>State</th>
+                <th>City</th>
+                <th>Update / Delete</th>
+            </tr>
+            <tr th:each=" p : ${page.content}" class="text-center">
+                <td th:text="${p.id}"></td>
+                <td ><a th:text="${p.customerName}" th:href="@{/customers/detail(customerNumber=${p.id})}"></a></td>
+                <td th:text="${p.addressLine1}"></td>
+                <td th:text="${p.phone}"></td>
+                <td th:text="${p.country}"></td>
+                <td th:if="${p.state != null}" th:text="${p.state}"></td>
+                <td class="text-red-600" th:if="${p.state == null}">n/a</td>
+                <td th:text="${p.city}"></td>
+                <td>
+                    <a th:href="@{'/customers/update?customerNumber='+${p.id}}"><button>Update</button></a>
+                    <a th:href="@{'/customers/delete?customerNumber='+${p.id}+'&page='+${page.number}}"><button>X</button></a>
+                </td>
+            </tr>
+        </table>
+        <div class="">
+            <span th:each="index : ${#numbers.sequence(0, page.totalPages -1)}">
+                <a th:href="@{/customers(page=${index})}"><button th:text="${index+1}" /></a>
+            </span>
+        </div>
+    </div>
+    <div>
+        <a href="/customers/create"><button>Create New Office</button></a>
+    </div>
+</body>
+</html>

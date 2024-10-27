@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="https://www.thymeleaf.org/">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="w-[1440px] mx-auto bg-cyan-950 text-sky-100">
+    <h1>Create Customer</h1>
+    <form class="text-neutral-950" action="/customers/create" method="post">
+        Customer Number: <input type="text" name="id" /><br>
+        Customer Name: <input type="text" name="customerName" /><br>
+        Contact Lastname: <input type="text" name="contactLastName"/><br>
+        Contact Firstname: <input type="text" name="contactFirstName" /><br>
+        Phone: <input type="text" name="phone"/><br>
+        Address: <input type="text" name="addressLine1"/><br>
+        City: <input type="text" name="city"/><br>
+        Country: <input type="text" name="country"/><br>
+        <input type="submit" value="Create"/><br>
+    </form>
+</body>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="https://www.thymeleaf.org/">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="w-[1440px] mx-auto bg-cyan-950 text-sky-100">
+    <h1>Customer Detail</h1>
+    <ul>
+        <li th:text="${customer.id}"></li>
+        <li th:text="${customer.customerName}"></li>
+        <li th:text="${customer.addressLine1}"></li>
+        <li th:text="${customer.addressLine2}"></li>
+        <li th:text="${customer.postalCode}"></li>
+        <li th:text="${customer.phone}"></li>
+        <li th:text="${customer.country}"></li>
+        <li th:text="${customer.state}"></li>
+        <li th:text="${customer.city}"></li>
+        <li th:text="${customer.contactFirstName}"></li>
+        <li th:text="${customer.contactLastName}"></li>
+        <li th:text="${customer.creditLimit}"></li>
+        <li th:text="${customer.salesRepEmployeeNumber}"></li>
+    </ul>
+    <a href="/customers"><button>Go Back</button></a>
+</body>
+</html>
